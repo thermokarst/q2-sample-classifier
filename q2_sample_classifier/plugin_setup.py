@@ -22,8 +22,7 @@ from .classify import (
     regress_gradient_boosting, maturity_index, detect_outliers,
     predict_coordinates)
 import q2_sample_classifier
-from q2_sample_classifier.sample_data._type import Coordinates
-from q2_sample_classifier.sample_data._format import CoordinatesDirectoryFormat
+from q2_sample_classifier import Coordinates
 
 
 plugin = Plugin(
@@ -32,15 +31,6 @@ plugin = Plugin(
     website="https://github.com/nbokulich/q2-sample-classifier",
     package='q2_sample_classifier'
 )
-
-
-plugin.register_semantic_types(Coordinates)
-
-plugin.register_semantic_type_to_format(
-    SampleData[Coordinates],
-    artifact_format=CoordinatesDirectoryFormat
-)
-
 
 description = ('Predict {0} sample metadata classes using a {1}. Splits input '
                'data into training and test  sets. The training set is used '
@@ -483,7 +473,8 @@ plugin.methods.register_function(
     },
     outputs=[('predictions', SampleData[Coordinates]),
              ('accuracy', SampleData[AlphaDiversity]),
-             ('prediction_regression', SampleData[Coordinates])
+             ('prediction_regression',
+                 SampleData[Coordinates])
     ],
     input_descriptions=input_descriptions,
     parameter_descriptions={

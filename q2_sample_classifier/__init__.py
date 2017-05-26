@@ -8,8 +8,9 @@
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
 
-import importlib
+from _format import CoordinatesFormat, CoordinatesDirectoryFormat
+from ._type import Coordinates
 
 __version__ = "0.0.0-dev"
 
-importlib.import_module('q2_sample_classifier.sample_data')
+__all__ = ['CoordinatesFormat', 'CoordinatesDirectoryFormat', 'Coordinates']
